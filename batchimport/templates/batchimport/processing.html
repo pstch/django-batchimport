@@ -1,6 +1,5 @@
-{% extends "site_base.html" %}
-
-{% block body %}
+<html>
+<body>
 Processing. Please wait...
 <form id='import_execute_form' action="{% url batchimport_import_execute %}" method="POST">
 </form>
@@ -9,4 +8,5 @@ Processing. Please wait...
 window.location="{% url batchimport_import_execute %}";
 </SCRIPT>
 
-{% endblock %}
+</body>
+</html>

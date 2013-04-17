@@ -1,7 +1,8 @@
-{% extends "site_base.html" %}
-
-{% block body %}
+<html>
+<body>
 <form id='import_execute_form' action="{% url batchimport_import_options %}" method="POST">
+{% csrf_token %}
+
 {% if form.mapping_only %}
 
 <h1>Batch Relationship Mapping</h1>
@@ -137,4 +138,5 @@ Please do the following for each field (on the left) in the table below:
 	<input type="submit" value="Submit" />
 </form>
 
-{% endblock %}
+</body>
+</html>

@@ -1,6 +1,5 @@
-{% extends "site_base.html" %}
-
-{% block body %}
+<html>
+<body>
 <h1>RESULTS FOR IMPORT OF {{ model_for_import }} DATA:</h1>
 Rows in spreadsheet: {{ num_rows_in_spreadsheet }}<br/>
 User specified start row: {{ start_row }}<br/>
@@ -35,4 +34,5 @@ Errors Only:<br/>
 {% endfor %}
 <br/><br/>
 
-{% endblock %}
+</body>
+</html>
