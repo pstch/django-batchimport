@@ -1,0 +1,140 @@
+{% extends "site_base.html" %}
+
+{% block body %}
+<form id='import_execute_form' action="{% url batchimport_import_options %}" method="POST">
+{% if form.mapping_only %}
+
+<h1>Batch Relationship Mapping</h1>
+<br/>You've chosen to import relationship data between two types of entities in the system (that 
+certain students are associated to certain teachers, for example). <br/><br/>It is assumed that
+each row in your uploaded spreadsheet or comma-separated (CSV) file represents enough
+information to uniquely identify two instances of the types of entities you are choosing 
+to relate.<br/><br/>
+Please note that in order for your import to be successful, both of these two entities must ALREADY be
+in the system (previously imported or manually added).<br/><br/>
+<h2>Instructions:</h2>
+For each entity type below, do the following:
+<ol>
+	<li>Select an appropriate column from the uploaded XLS/CSV file corresponding to the 
+	field on the entity (the name on the left).</li>
+    <li>Select one or more fields you would like to have the system use to uniquely
+	identify the exact instance of the entity by clicking the <b>Is Identity</b> check box for that field.
+	</li>
+</ol>
+<br/>For example, you might check the <b>Is Identity</b> checkbox for <i>first_name</i>, <i>last_name</i>,
+    and <i>phone</i> if you thought that information would be enough to uniquely identify a person. As another
+    example, if you already have a unique ID for your data, just click the checkbox for that field.<br/><br/>
+	{% for model_name, field_dict in form.import_info_dict.items %}
+        <h2>{{ model_name }}</h2>
+		<table>
+			<tr>
+				<th>Field Name</th>
+				<th>Spreadsheet Column</th>
+				<th>Is Identity</th>
+			</tr>
+			  {% for field_name, field_list in field_dict.items %}
+			<tr>
+				<td>{{ field_name }}</td>
+				{% for field in field_list %}
+				<div class="fieldWrapper">
+				<td>{{ field }}</td>
+				</div>
+				{% endfor %}
+			</tr>
+			{% endfor %}
+	    </table><br/>
+    {% endfor %}
+
+{% else %}
+<h1>Batch Data Import/Update</h1>
+<br/>You've chosen to upload data to batch import for a specific type of entity 
+(multiple teachers at one time, for example).<br/><br/>
+<h2>Instructions:</h2>
+Please do the following for each field (on the left) in the table below:
+<ol>
+    <li>Select an appropriate column from the uploaded XLS/CSV file corresponding to the 
+    field on the entity (the name on the left).</li>
+    <li>Each row in your spreadsheet or CSV file is assumed to represent a single instance of the
+	entity for which you are importing data. If that instance is already in the database, the system
+	will automatically update it. In order to do so, it must have a way to uniquely identify the
+	item. For each field that can be used (alone or together) to uniquely identify a specific instance,
+	click the <b>Is Identity</b> checkbox. By default all are checked, indicating that all fields from the
+	spreadsheet must match all corresponding fields in the database for the two to represent the 
+	same item.</li>
+    <li>For each field for which a given spreadsheet row may not have data, you may enter a default value
+	in the input box labeled <b>Default Value</b>.</li>
+    <li>In the case where a given field represents another entity already in the database (for example
+	if your <i>teacher</i> instance is associated with a specific <i>school</i> instance) the system must know how to 
+	find the related object. You don't have to know ahead of time which fields are like this. If a given
+	field represents related object, the drop-down under <b>Mapping Field</b> is filled with fields for the related 
+	entity (all the fields on the <i>school</i> object, to continue our example). From this drop-down select the
+	field which the system should use to find the object using the value found in your spreadsheet.</li>
+    <li>Once done, click on the <b>Submit</b> button at the bottom of the page.</li>
+</ol><br/>
+
+
+    {% for model_name, field_dict in form.import_info_dict.items %}
+        <h2>{{ model_name }}</h2>
+    <table>
+        <tr>
+            <th>Field Name<br/><small>*=required</small></th>
+            <th>Spreadsheet Column</th>
+            <th>Is Identity</th>
+            <th>Default Value</th>
+            <th>Mapping Field</th>
+        </tr>
+          {% for field_name, field_list in field_dict.items %}
+        <tr>
+            <td>{{ field_name }}</td>
+            {% for field in field_list %}
+            <div class="fieldWrapper">
+            <td>{{ field }}</td>
+            </div>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table><br/><br/><br/><br/>
+        {% endfor %}
+	{% endif %}
+
+<h2>Options</h2>
+    <div class="fieldWrapper">
+        {{ form.show_successful_imports.errors }}
+        <label for="id_show_successful_imports">{{ form.show_successful_imports.label }}</label>
+        {{ form.show_successful_imports }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.show_successful_updates.errors }}
+        <label for="id_show_successful_imports">{{ form.show_successful_updates.label }}</label>
+        {{ form.show_successful_updates }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.show_errors.errors }}
+        <label for="id_show_successful_imports">{{ form.show_errors.label }}</label>
+        {{ form.show_errors }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.stop_on_first_error.errors }}
+        <label for="id_show_successful_imports">{{ form.stop_on_first_error.label }}</label>
+        {{ form.stop_on_first_error }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.update_dupes.errors }}
+        <label for="id_show_successful_imports">{{ form.update_dupes.label }}</label>
+        {{ form.update_dupes }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.start_row.errors }}
+        <label for="id_show_successful_imports">{{ form.start_row.label }}</label>
+        {{ form.start_row }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.end_row.errors }}
+        <label for="id_show_successful_imports">{{ form.end_row.label }}</label>
+        {{ form.end_row }}
+    </div>
+
+	<input type="submit" value="Submit" />
+</form>
+
+{% endblock %}

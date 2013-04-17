@@ -1,74 +1,14 @@
-<html>
-<body>1. Import Object Test (School):<br/>
-<form enctype="multipart/form-data" action="/excel/import_object/" method="POST">
-<input type='file' name='upload_file' />
-<input type='hidden' name='app' value='sbase'/>
-<input type='hidden' name='model' value='School'/>
-<input type="submit" value="Submit" />
-</form>
-<hr/><br/>
-2. Import Object Test (Parent):<br/>
-<form enctype="multipart/form-data" action="/excel/import_object/" method="POST">
-<input type='file' name='upload_file' />
-<input type='hidden' name='app' value='sbase'/>
-<input type='hidden' name='model' value='Parent'/>
-<input type="submit" value="Submit" />
-</form>
-<hr/><br/>
-3. Import Object Test (Student):<br/>
-<form enctype="multipart/form-data" action="/excel/import_object/" method="POST">
-<input type='file' name='upload_file' />
-<input type='hidden' name='app' value='sbase'/>
-<input type='hidden' name='model' value='Student'/>
-<input type="submit" value="Submit" />
-</form>
-<hr/><br/>
-4. Import Relation Test (Student-Parent)(Clean=FALSE, Part 1):<br/>
-<form enctype="multipart/form-data" action="/excel/import_relation/" method="POST">
-<input type='file' name='upload_file' />
-<input type='hidden' name='app' value='sbase'/>
-<input type='hidden' name='model' value='Student'/>
-<input type='hidden' name='field' value='parents'/>
-<input type='hidden' name='clean' value='0'/>
-<input type="submit" value="Submit" />
-</form>
-<hr/><br/>
-5. Import Relation Test (Student-Parent)(Clean=FALSE, Part 2):<br/>
-After part 1 and 2, you should be able to export the relationships<br/>and get the starting relationship import file.
-<form enctype="multipart/form-data" action="/excel/import_relation/" method="POST">
-<input type='file' name='upload_file' />
-<input type='hidden' name='app' value='sbase'/>
-<input type='hidden' name='model' value='Student'/>
-<input type='hidden' name='field' value='parents'/>
-<input type='hidden' name='clean' value='0'/>
-<input type="submit" value="Submit" />
-</form>
-<hr/><br/>
-6. Import Relation Test (Student-Parent)(Clean=TRUE):<br/>
-After this one, the earlier relationships should be blown<br/>
-away (cleaned) and all of them re-added. Exporting the<br/>
-relationships afterwards should give you the original import file.
-<form enctype="multipart/form-data" action="/excel/import_relation/" method="POST">
-<input type='file' name='upload_file' />
-<input type='hidden' name='app' value='sbase'/>
-<input type='hidden' name='model' value='Student'/>
-<input type='hidden' name='field' value='parents'/>
-<input type='hidden' name='clean' value='1'/>
-<input type="submit" value="Submit" />
-</form>
-<hr/><br/>
-7. Export Object Test (School):<br/>
-   Click <a href="/excel/export/sbase/School/">here</a>
-<hr/><br/>
-8. Export Object Test (Parent):<br/>
-   Click <a href="/excel/export/sbase/Parent/">here</a>
-<hr/><br/>
-9. Export Object Test (Student):<br/>
-   Click <a href="/excel/export/sbase/Student/">here</a>
-<hr/><br/>
-10. Export Relation Test (Student-Parent):<br/>
-   Click <a href="/excel/export/sbase/Student/parents/">here</a>
-<hr/><br/>
+{% extends "site_base.html" %}
 
-</body>
-</html>
+{% block body %}
+
+{% if form.errors %}
+<p>{{ form.errors }}</p>
+{% endif %}
+<form enctype="multipart/form-data" action="{% url batchimport_import_start %}" method="POST">
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
+
