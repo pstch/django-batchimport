@@ -1,0 +1,38 @@
+{% extends "site_base.html" %}
+
+{% block body %}
+<h1>RESULTS FOR IMPORT OF {{ model_for_import }} DATA:</h1>
+Rows in spreadsheet: {{ num_rows_in_spreadsheet }}<br/>
+User specified start row: {{ start_row }}<br/>
+User specified end row: {{ end_row }}<br/>
+<br/>
+<h2>Summary</h2>
+Number of rows successfully processed: {{ num_rows_processed }}<br/>
+Number of rows imported: {{ num_items_imported }}<br/>
+Number of rows updated: {{ num_items_updated }}<br/>
+Number of errors: {{ num_errors }}<br/>
+<br/>
+<br/>
+<h2>Details</h2>
+Combined Results (All Messages in Order):<br/>
+{% for result in combined_results_messages %}
+{{ result }}<br/>
+{% endfor %}
+<br/><br/>
+Imports Only:<br/>
+{% for result in import_results_messages %}
+{{ result }}<br/>
+{% endfor %}
+<br/><br/>
+Updates Only:<br/>
+{% for result in update_results_messages %}
+{{ result }}<br/>
+{% endfor %}
+<br/><br/>
+Errors Only:<br/>
+{% for result in error_results_messages %}
+{{ result }}<br/>
+{% endfor %}
+<br/><br/>
+
+{% endblock %}
