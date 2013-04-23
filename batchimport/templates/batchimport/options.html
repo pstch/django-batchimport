@@ -1,6 +1,6 @@
 <html>
 <body>
-<form id='import_execute_form' action="{% url batchimport_import_options %}" method="POST">
+<form id='import_execute_form' action="{% url 'batchimport_import_options' %}" method="POST">
 {% csrf_token %}
 
 {% if form.mapping_only %}
