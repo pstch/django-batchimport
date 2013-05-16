@@ -15,10 +15,10 @@ from django.core.exceptions import ObjectDoesNotExist
 
 import xlrd
 
-from util import process_import_file, ModelImportInfo
-from forms import UploadImportFileForm
-from forms import ImportOptionsForm
-from batchimport_settings import *
+from batchimport.util import process_import_file, ModelImportInfo
+from batchimport.forms import UploadImportFileForm
+from batchimport.forms import ImportOptionsForm
+from batchimport.batchimport_settings import *
 
 
 # TODO:
