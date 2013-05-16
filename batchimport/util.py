@@ -7,7 +7,7 @@ from django.db.models.fields import AutoField
 
 import xlrd
 
-import batchimport_settings
+import batchimport.batchimport_settings
 
 
 def process_import_file(import_file, session):
