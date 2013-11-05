@@ -19,13 +19,13 @@ from django.conf.urls.defaults import *
 from batchimport.views import import_start, import_options, import_execute
 
 urlpatterns = patterns('',
-						url(r'^import_start/$',
-							import_start,
-							name='batchimport_import_start'),
-						url(r'^import_options/$',
+                       url(r'^form/$',
+                           import_start,
+                           name='batchimport_import_start'),
+                       url(r'^options/$',
                            import_options,
                            name='batchimport_import_options'),
-                       url(r'^import_execute/$',
+                       url(r'^run/$',
                            import_execute,
                            name='batchimport_import_execute'),
-                       )
+)
