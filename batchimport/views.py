@@ -71,7 +71,7 @@ def import_start(request, extra_context=None):
 			selected_model = form.cleaned_data['model_for_import']
 			request.session['save_file_name'] = save_file_name
 			request.session['model_for_import'] = selected_model
-			return HttpResponseRedirect(reverse('batchimport:options'))
+			return HttpResponseRedirect(reverse('batchimport_import_options'))
 	else:
 		form = UploadImportFileForm()
 	if extra_context is None:

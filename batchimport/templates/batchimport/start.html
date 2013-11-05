@@ -4,7 +4,7 @@
 {% if form.errors %}
 <p>{{ form.errors }}</p>
 {% endif %}
-<form enctype="multipart/form-data" action="{% url 'batchimport:start' %}" method="POST">
+<form enctype="multipart/form-data" action="{% url 'batchimport_import_start' %}" method="POST">
 {% csrf_token %}
 {{ form.as_p }}
 <input type="submit" value="Submit" />
