@@ -13,6 +13,7 @@ from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
+from django.shortcuts import render_to_response
 
 import xlrd
 
@@ -77,7 +78,7 @@ class ImportOptionsView(FormView):
                                                     form.relation_info_dict)
         self.request.session['batchimport_info'] = model_import_info
 
-        self.template_name = self.processing_template_name
+        return render_to_response(self.processing_template_name)
 
 class ImportRunView(TemplateView):
     template_name = "batchimport/run.html"
