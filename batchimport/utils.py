@@ -13,7 +13,7 @@ from batchimport.batchimport_settings import *
 def process_import_file(import_file, session):
     """
     Open the uploaded file and save it to the temp file location specified
-    in BATCH_IMPORT_TEMPFILE_LOCATION, adding the current session key to
+    in BATCHIMPORT_TEMPFILE_LOCATION, adding the current session key to
     the file name. Then return the file name so it can be stored in the
     session for the current user.
 
@@ -35,7 +35,7 @@ def process_import_file(import_file, session):
     import_file_name = import_file.name
     session_key = session.session_key
     save_file_name = session_key + import_file_name
-    destination = open(join(BATCH_IMPORT_TEMPFILE_LOCATION, save_file_name), 'wb+')
+    destination = open(join(BATCHIMPORT_TEMPFILE_LOCATION, save_file_name), 'wb+')
     for chunk in import_file.chunks():
         destination.write(chunk)
     destination.close()
@@ -51,7 +51,7 @@ def get_model_list():
     """
     model_list = []
     relation_list = []
-    settings_model_list = BATCH_IMPORT_IMPORTABLE_MODELS
+    settings_model_list = BATCHIMPORT_IMPORTABLE_MODELS
     if settings_model_list:
         for model in settings_model_list:
             model_list.append((model, model.split('.')[len(model.split('.'))-1]))
@@ -103,7 +103,7 @@ def get_column_choice_list(save_file_name):
     """
     column_choice_list = []
     column_choice_list.append((-1, 'SELECT COLUMN'))
-    filepath = join(BATCH_IMPORT_TEMPFILE_LOCATION, save_file_name)
+    filepath = join(BATCHIMPORT_TEMPFILE_LOCATION, save_file_name)
     if not isfile(filepath):
         raise NameError, "%s is not a valid filename" % save_file_name
     book = xlrd.open_workbook(filepath)
@@ -196,7 +196,7 @@ def _get_field_tuple_list(field_list, importing_relations_only):
         # django's inner workings.
         related_model_name = None
         related_model_app_name = None
-        import_uneditable_flag = field.editable or BATCH_IMPORT_UNEDITABLE_FIELDS 
+        import_uneditable_flag = field.editable or BATCHIMPORT_UNEDITABLE_FIELDS 
         if import_uneditable_flag and (not field.name[-4:] == '_ptr') and (not field.__class__ == AutoField):
             if issubclass(field.__class__, related.RelatedField):
                 related_model_app_name = field.rel.to.__module__.split('.')[0]
@@ -327,10 +327,10 @@ class ModelImportInfo(object):
                 self.related_model_info_by_field_name_dict[model_name][str(base_field_name)] = [relation_info_tuple[0],
                                                                                 relation_info_tuple[1],
                                                                                 str(field_value)]
-            if BATCH_IMPORT_VALUE_OVERRIDES:
+            if BATCHIMPORT_VALUE_OVERRIDES:
                 print 'in override code ' + full_model_name + ' ' + base_field_name 
                 try:
-                    override_value = batchimport_settings.BATCH_IMPORT_VALUE_OVERRIDES[full_model_name][base_field_name]
+                    override_value = batchimport_settings.BATCHIMPORT_VALUE_OVERRIDES[full_model_name][base_field_name]
                     self.field_value_override_dict[model_name][base_field_name] = override_value
                     print override_value
                 except:

@@ -12,13 +12,12 @@ class UploadImportFileForm(forms.Form):
 	import_file = forms.FileField(label='Select your XLS file:')
 
 class ImportOptionsForm(forms.Form):
-	show_successful_imports = forms.BooleanField(initial=batchimport.batchimport_settings.BATCH_IMPORT_SHOW_SUCCESSFUL_IMPORTS, required=False)
-	show_successful_updates = forms.BooleanField(initial=batchimport.batchimport_settings.BATCH_IMPORT_SHOW_SUCCESSFUL_UPDATES, required=False)
-	show_errors = forms.BooleanField(initial=batchimport.batchimport_settings.BATCH_IMPORT_SHOW_ERRORS, required=False)
-	stop_on_first_error = forms.BooleanField(initial=batchimport.batchimport_settings.BATCH_IMPORT_STOP_ON_FIRST_ERROR, required=False)
-	update_dupes = forms.BooleanField(initial=batchimport.batchimport_settings.BATCH_IMPORT_UPDATE_DUPS, required=False)
-	start_row = forms.IntegerField(initial=batchimport.batchimport_settings.BATCH_IMPORT_START_ROW, required=False)
-	end_row = forms.IntegerField(initial=batchimport.batchimport_settings.BATCH_IMPORT_END_ROW, required=False)
+	show_successful_imports = forms.BooleanField(initial=batchimport.batchimport_settings.BATCHIMPORT_SHOW_SUCCESSFUL_IMPORTS, required=False)
+	show_successful_updates = forms.BooleanField(initial=batchimport.batchimport_settings.BATCHIMPORT_SHOW_SUCCESSFUL_UPDATES, required=False)
+	stop_on_first_error = forms.BooleanField(initial=batchimport.batchimport_settings.BATCHIMPORT_STOP_ON_FIRST_ERROR, required=False)
+	update_dupes = forms.BooleanField(initial=batchimport.batchimport_settings.BATCHIMPORT_UPDATE_DUPS, required=False)
+	start_row = forms.IntegerField(initial=batchimport.batchimport_settings.BATCHIMPORT_START_ROW, required=False)
+	end_row = forms.IntegerField(initial=batchimport.batchimport_settings.BATCHIMPORT_END_ROW, required=False)
 	def __init__(self, model_for_import, save_file_name, *args, **kwargs):
 		super(ImportOptionsForm, self).__init__(*args, **kwargs)
 		self.process_options = {}
@@ -130,7 +129,6 @@ class ImportOptionsForm(forms.Form):
 			process_options = {}
 			process_options['show_successful_imports'] = self['show_successful_imports']
 			process_options['show_successful_updates'] = self['show_successful_updates']
-			process_options['show_errors'] = self['show_errors']
 			process_options['stop_on_first_error'] = self['stop_on_first_error']
 			process_options['update_dupes'] = self['update_dupes']
 			process_options['start_row'] = self['start_row']
