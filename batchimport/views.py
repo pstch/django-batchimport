@@ -73,11 +73,13 @@ class ImportOptionsView(FormView):
         for field in form.model_field_names:
             model_field_value_dict[field] = form.cleaned_data[field]
                 
-        model_import_info = ModelImportInfo(str(self.import_model),
+        model_import_info = ModelImportInfo(self.import_model,
                                             model_field_value_dict,
                                             form.relation_info_dict)
         
-        self.request.session['batchimport_info'] = model_import_info
+        info = [ str(o) for o in model_import_info.__dict__ ]
+
+        self.request.session['batchimport_info'] = info
 
         return render_to_response(self.processing_template_name)
 
