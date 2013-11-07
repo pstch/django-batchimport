@@ -77,7 +77,9 @@ class ImportOptionsView(FormView):
                                             model_field_value_dict,
                                             form.relation_info_dict)
         
-        info = [ str(o) for o in model_import_info.__dict__ ]
+        info = model_import_info.__dict__
+        for x in info:
+            x = str(x)
         info['import_mode'] = model_import_info.import_mode
         self.request.session['batchimport_info'] = info.items()
         
