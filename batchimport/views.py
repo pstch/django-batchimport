@@ -64,9 +64,9 @@ class ImportOptionsView(FormView):
 
 
     def form_valid(self, form):
-        request.session['batchimport_options'] = {}
+        self.request.session['batchimport_options'] = {}
         for option in form.get_process_options_dict().keys():
-            request.session['process_options'][option] = form.cleaned_data[option]
+            self.request.session['process_options'][option] = form.cleaned_data[option]
 
         model_field_value_dict = {}
         for field in form.model_field_names:
