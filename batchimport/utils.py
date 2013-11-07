@@ -9,38 +9,6 @@ import xlrd
 
 from batchimport.batchimport_settings import *
 
-
-def process_import_file(import_file, session):
-    """
-    Open the uploaded file and save it to the temp file location specified
-    in BATCHIMPORT_TEMPFILE_LOCATION, adding the current session key to
-    the file name. Then return the file name so it can be stored in the
-    session for the current user.
-
-    **Required arguments**
-    
-    ``import_file``
-        The uploaded file object.
-       
-    ``session``
-        The session object for the current user.
-        
-    ** Returns**
-    
-    ``save_file_name``
-        The name of the file saved to the temp location.
-        
-        
-    """
-    import_file_name = import_file.name
-    session_key = session.session_key
-    save_file_name = session_key + import_file_name
-    destination = open(join(BATCHIMPORT_TEMPFILE_LOCATION, save_file_name), 'wb+')
-    for chunk in import_file.chunks():
-        destination.write(chunk)
-    destination.close()
-    return save_file_name
-
 def get_model_list():
     """
     Get a list of models for which the user can batch import information. 
