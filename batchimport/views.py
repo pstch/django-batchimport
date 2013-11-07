@@ -31,12 +31,12 @@ class ImportUploadView(FormView):
         form_class = UploadImportFileForm
 
         def form_valid(self,form):
-                handle_uploaded_file(request.FILES['import_file'],
+                handle_uploaded_file(rself.equest.FILES['import_file'],
                                      join(BATCHIMPORT_TEMPDIR,
-                                          request.FILES['import_file'].name))
+                                          self.request.FILES['import_file'].name))
                                                                           
-                request.session['batchimport_file_name'] = request.FILES['import_file'].name
-                request.session['batchimport_model'] = form.cleaned_data['model_for_import']
+                self.request.session['batchimport_file_name'] = self.request.FILES['import_file'].name
+                self.request.session['batchimport_model'] = form.cleaned_data['model_for_import']
                 return HttpResponseRedirect("batchimport:options")
 
 class ImportOptionsView(FormView):
