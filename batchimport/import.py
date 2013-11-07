@@ -72,11 +72,11 @@ def _do_batch_import(request, model_import_info, book, sheet, process_option_dic
                                 setattr(dupe_in_db, key, import_object_dict[key])
                                 dupe_in_db.save()
 
-                                    status_msg = 'Updated : #%d' % str(row)
-                                    status_dict['updated_count'] += 1
-                                    if process_option_dict['show_successful_updates']:
-                                        status_dict['combined_messages'].append(status_msg)
-                                        status_dict['update_messages'].append(status_msg)
+                                status_msg = 'Updated : #%d' % str(row)
+                                status_dict['updated_count'] += 1
+                                if process_option_dict['show_successful_updates']:
+                                    status_dict['combined_messages'].append(status_msg)
+                                    status_dict['update_messages'].append(status_msg)
 
                     except ObjectDoesNotExist:
                         # The object doesn't exist. Go ahead and add it.
