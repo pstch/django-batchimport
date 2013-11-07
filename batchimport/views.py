@@ -78,9 +78,9 @@ class ImportOptionsView(FormView):
                                             form.relation_info_dict)
         
         info = [ str(o) for o in model_import_info.__dict__ ]
-
+        info['import_mode'] = model_import_info.import_mode
         self.request.session['batchimport_info'] = info
-
+        
         return render_to_response(self.processing_template_name)
 
 class ImportRunView(TemplateView):
