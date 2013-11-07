@@ -37,7 +37,7 @@ class ImportUploadView(FormView):
                                                                           
                 self.request.session['batchimport_file_name'] = self.request.FILES['import_file'].name
                 self.request.session['batchimport_model'] = form.cleaned_data['model_for_import']
-                return HttpResponseRedirect("batchimport:options")
+                return HttpResponseRedirect(reverse("batchimport:options"))
 
 class ImportOptionsView(FormView):
         template_name = "batchimport/options.html"
@@ -50,7 +50,7 @@ class ImportOptionsView(FormView):
                         self.import_file_name = request.session['batchimport_file_name']
                         self.import_model = request.session['batchimport_model']
                 except KeyError:
-                        return HttpResponseRedirect("batchimport:upload")
+                        return HttpResponseRedirect(reverse("batchimport:upload"))
                 return super(ImportOptionsView, self).dispatch(request, *args, **kwargs)
 
         def get_context_data(self, **kwargs):
@@ -87,7 +87,7 @@ class ImportRunView(TemplateView):
 
                         self.init_status_dict()
                 except KeyError:
-                        return HttpResponseRedirect("batchimport:upload")
+                        return HttpResponseRedirect(reverse("batchimport:upload"))
                 return super(ImportRunView, self).dispatch(request, *args, **kwargs)
 
         def get_context_data(self, **kwargs):
