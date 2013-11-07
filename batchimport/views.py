@@ -138,7 +138,7 @@ class ImportRunView(TemplateView):
         try:
             book = xlrd.open_workbook(filepath)
             sheet = book.sheet_by_index(0)
-            status_dict['row_count'] = sheet.nrows
+            self.status_dict['row_count'] = sheet.nrows
 
             # Determine the last row of the spreadsheet to be processed.
             if self.import_options['end_row'] == -1:
@@ -166,4 +166,5 @@ class ImportRunView(TemplateView):
                                                         'critical' : 'Yes',
                                                         'message' : '%s' % e,
                                                         'info' : 'File: %s' % filepath})
+            raise e
             return
