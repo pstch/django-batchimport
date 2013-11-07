@@ -21,7 +21,7 @@ from batchimport.forms import UploadImportFileForm
 from batchimport.forms import ImportOptionsForm
 from batchimport.batchimport_settings import *
 
-def handle_uploaded_file(file,target):
+def handle_uploaded_file(f,target):
     with open(target, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
