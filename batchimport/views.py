@@ -31,7 +31,7 @@ class ImportUploadView(FormView):
         form_class = UploadImportFileForm
 
         def form_valid(self,form):
-                handle_uploaded_file(rself.equest.FILES['import_file'],
+                handle_uploaded_file(self.request.FILES['import_file'],
                                      join(BATCHIMPORT_TEMPDIR,
                                           self.request.FILES['import_file'].name))
                                                                           
