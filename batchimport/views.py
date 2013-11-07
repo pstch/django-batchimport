@@ -45,12 +45,7 @@ class ImportOptionsView(FormView):
         form_class = ImportOptionsForm
 	
         def dispatch(self, request, *args, **kwargs):
-                try:
-                        self.import_file_name = request.session['batchimport_file_name']
-                        self.import_model = request.session['batchimport_model']
-                except KeyError:
-                        return HttpResponseRedirect(reverse("batchimport:upload"))
-
+            return super(ImportOptionsView, self).dispatch(request, *args, **kwargs)
 
         def get_context_data(self, **kwargs):
                 context = super(ImportOptionsView, self).get_context_data(**kwargs)
