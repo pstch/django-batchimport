@@ -16,7 +16,7 @@ from django.views.generic.edit import FormView
 
 import xlrd
 
-from batchimport.utils import process_import_file, ModelImportInfo
+from batchimport.utils import ModelImportInfo
 from batchimport.forms import UploadImportFileForm
 from batchimport.forms import ImportOptionsForm
 from batchimport.batchimport_settings import *
