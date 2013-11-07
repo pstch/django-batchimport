@@ -42,6 +42,7 @@ BATCHIMPORT_UNEDITABLE_FIELDS = get_setting('BATCHIMPORT_UNEDITABLE_FIELDS', Fal
 # callable.
 BATCHIMPORT_VALUE_OVERRIDES = get_setting('BATCHIMPORT_VALUE_OVERRIDES', {})
 
+BATCHIMPORT_IMPORTABLE_MODELS = get_setting('BATCHIMPORT_IMPORTABLE_MODELS', {})
 
 # The system can show you individual imports, updates individually 
 # using the following boolean options.
