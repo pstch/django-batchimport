@@ -97,7 +97,7 @@ class ImportRunView(TemplateView):
             self.init_status_dict()
         except KeyError:
             return HttpResponseRedirect(reverse("batchimport:upload"))
-            return super(ImportRunView, self).dispatch(request, *args, **kwargs)
+        return super(ImportRunView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(ImportRunView, self).get_context_data(**kwargs)
