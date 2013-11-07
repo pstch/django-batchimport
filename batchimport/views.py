@@ -73,7 +73,7 @@ class ImportOptionsView(FormView):
 
                 model_field_value_dict = {}
                 for field in form.model_field_names:
-                        model_field_value_dict[field] form.cleaned_data[field]
+                        model_field_value_dict[field] = form.cleaned_data[field]
 
                 model_import_info = ModelImportInfo(self.import_model,
                                                     model_field_value_dict,
