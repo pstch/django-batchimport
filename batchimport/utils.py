@@ -71,7 +71,7 @@ def get_column_choice_list(save_file_name):
     """
     column_choice_list = []
     column_choice_list.append((-1, 'SELECT COLUMN'))
-    filepath = join(BATCHIMPORT_TEMPFILE_LOCATION, save_file_name)
+    filepath = join(BATCHIMPORT_TEMPDIR, save_file_name)
     if not isfile(filepath):
         raise NameError, "%s is not a valid filename" % save_file_name
     book = xlrd.open_workbook(filepath)
