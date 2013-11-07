@@ -88,11 +88,12 @@ def _do_batch_import(request, model_import_info, book, sheet, process_option_dic
                         if process_option_dict['show_successful_imports']:
                             status_dict['combined_messages'].append(status_msg)
                         status_dict['import_messages'].append(status_msg)
-        except:
+        except Exception, e:
             status_dict['error_messags'].append({'name' : 'Row processing error',
                                                  'critical' : 'No' if not process_option_dict['stop_on_first_error'] else "Yes",
                                                  'description' : str(sys.exc_info()[1]),
                                                  'info' : 'Row: %s' % row})
+            raise e
             if process_option_dict['stop_on_first_error']:
                 break
                     
