@@ -45,7 +45,7 @@ class ImportOptionsView(FormView):
         form_class = ImportOptionsForm
 	
         def dispatch(self, request, *args, **kwargs):
-            return super(ImportOptionsView, self).dispatch(request, *args, **kwargs)
+            return super(self, ImportOptionsView).dispatch(request, *args, **kwargs)
 
         def get_context_data(self, **kwargs):
                 context = super(ImportOptionsView, self).get_context_data(**kwargs)
