@@ -1,6 +1,6 @@
 <html>
 <body>
-<form id='import_execute_form' action="{% url 'batchimport_import_options' %}" method="POST">
+<form id='import_execute_form' action="{% url 'batchimport:options' %}" method="POST">
 {% csrf_token %}
 
 {% if form.mapping_only %}
@@ -72,7 +72,6 @@ Please do the following for each field (on the left) in the table below:
 	field which the system should use to find the object using the value found in your spreadsheet.</li>
     <li>Once done, click on the <b>Submit</b> button at the bottom of the page.</li>
 </ol><br/>
-
 
     {% for model_name, field_dict in form.import_info_dict.items %}
         <h2>{{ model_name }}</h2>

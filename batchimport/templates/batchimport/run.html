@@ -1,0 +1,38 @@
+<html>
+<body>
+<h1>RESULTS FOR IMPORT OF {{ model_for_import }} DATA:</h1>
+Rows in spreadsheet: {{ num_count }}<br/>
+User specified start row: {{ start_row }}<br/>
+User specified end row: {{ end_row }}<br/>
+<br/>
+<h2>Summary</h2>
+Number of rows successfully processed: {{ processed_count }}<br/>
+Number of rows imported: {{ imported_count }}<br/>
+Number of rows updated: {{ updated_count }}<br/>
+Number of errors: {{ error_messages|length }}<br/>
+<br/>
+<br/>
+<h2>Details</h2>
+Combined Results (All Messages in Order):<br/>
+{% for message in combined_messages %}
+{{ message }}<br/>
+{% endfor %}
+<br/><br/>
+Imports Only:<br/>
+{% for message in import_messages %}
+{{ message }}<br/>
+{% endfor %}
+<br/><br/>
+Updates Only:<br/>
+{% for message in update_messages %}
+{{ message }}<br/>
+{% endfor %}
+<br/><br/>
+Errors Only:<br/>
+{% for message in error_messages %}
+{{ message }}<br/>
+{% endfor %}
+<br/><br/>
+
+</body>
+</html>

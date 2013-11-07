@@ -1,0 +1,13 @@
+<html>
+  <body>
+    {% if form.errors %}
+    <p>{{ form.errors }}</p>
+    {% endif %}
+    <form enctype="multipart/form-data" action="{% url 'batchimport:upload' %}" method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
+

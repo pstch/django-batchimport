@@ -1,12 +1,12 @@
 <html>
 <body>
 Processing. Please wait...
-<form id='import_execute_form' action="{% url 'batchimport_import_execute' %}" method="POST">
+<form id='import_execute_form' action="{% url 'batchimport:run' %}" method="POST">
 </form>
 
-<SCRIPT LANGUAGE="JavaScript">
-window.location="{% url 'batchimport_import_execute' %}";
-</SCRIPT>
+<script>
+window.location="{% url 'batchimport:run' %}";
+</script>
 
 </body>
 </html>
