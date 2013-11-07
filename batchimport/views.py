@@ -147,14 +147,14 @@ class ImportRunView(TemplateView):
                 self.status_dict['end_row'] = self.import_options['end_row']
 
             if self.import_info.import_mode == ModelImportInfo.OBJECT_IMPORT:
-                self.status_dict = _do_batch_import(request,
+                self.status_dict = _do_batch_import(self.request,
                                                     self.import_info,
                                                     book,
                                                     sheet,
                                                     self.import_options,
                                                     self.status_dict)
             else:
-                self.status_dict = _do_relation_import(request,
+                self.status_dict = _do_relation_import(self.request,
                                                        self.import_info,
                                                        book,
                                                        sheet,
