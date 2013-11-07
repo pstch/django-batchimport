@@ -77,7 +77,7 @@ class ImportOptionsView(FormView):
                                             model_field_value_dict,
                                             form.relation_info_dict)
         
-        self.request.session['batchimport_info'] = model_import_info.__dict__
+        self.request.session['batchimport_info'] = model_import_info.__dict_
 
         return render_to_response(self.processing_template_name)
 
