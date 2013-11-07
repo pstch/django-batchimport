@@ -295,10 +295,10 @@ class ModelImportInfo(object):
                 self.related_model_info_by_field_name_dict[model_name][str(base_field_name)] = [relation_info_tuple[0],
                                                                                 relation_info_tuple[1],
                                                                                 str(field_value)]
-            if BATCH_IMPORT_VALUE_OVERRIDES:
+            if BATCHIMPORT_VALUE_OVERRIDES:
                 print 'in override code ' + full_model_name + ' ' + base_field_name 
                 try:
-                    override_value = batchimport_settings.BATCH_IMPORT_VALUE_OVERRIDES[full_model_name][base_field_name]
+                    override_value = batchimport_settings.BATCHIMPORT_VALUE_OVERRIDES[full_model_name][base_field_name]
                     self.field_value_override_dict[model_name][base_field_name] = override_value
                     print override_value
                 except:
