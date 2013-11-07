@@ -5,15 +5,14 @@ a model is present.
 """
 import sys
 import os
+
 from os.path import join, isfile
 
-from django.views.generic.edit import FormView
-
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
-from django.template import RequestContext
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.generic import TemplateView
+from django.views.generic.edit import FormView
 
 import xlrd
 
@@ -21,13 +20,6 @@ from batchimport.utils import process_import_file, ModelImportInfo
 from batchimport.forms import UploadImportFileForm
 from batchimport.forms import ImportOptionsForm
 from batchimport.batchimport_settings import *
-
-
-# TODO:
-# - Add overrides for forms everywhere.
-# - Add overrides for templates too.
-class ImportFailure(Exception):
-        pass
 
 def handle_uploaded_file(file,target):
     with open(target, 'wb+') as destination:
