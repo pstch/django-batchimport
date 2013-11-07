@@ -21,6 +21,7 @@ from batchimport.utils import ModelImportInfo
 from batchimport.forms import UploadImportFileForm
 from batchimport.forms import ImportOptionsForm
 from batchimport.batchimport_settings import *
+from batchimport.parser import *
 
 def handle_uploaded_file(f,target):
     with open(target, 'wb+') as destination:
