@@ -36,8 +36,9 @@ class ImportUploadView(FormView):
                              join(BATCHIMPORT_TEMPDIR,
                                   self.request.FILES['import_file'].name))
         
-        self.request.session['batchimport_file_name'] = self.request.FILES['import_file'].name
-        self.request.session['batchimport_model'] = form.cleaned_data['model_for_import']
+        self.request.session['batchimport_file_name'] = str(self.request.FILES['import_file'].name)
+        self.request.session['batchimport_model'] = str(form.cleaned_data['model_for_import'])
+
         return HttpResponseRedirect(reverse("batchimport:options"))
 
 class ImportOptionsView(FormView):
@@ -77,11 +78,7 @@ class ImportOptionsView(FormView):
                                             model_field_value_dict,
                                             form.relation_info_dict)
         
-        info = model_import_info.__dict__
-        for x in info:
-            x = str(x)
-        info['import_mode'] = model_import_info.import_mode
-        self.request.session['batchimport_info'] = info.items()
+        self.request.session['batchimport_info'] = model_import_info
         
         return render_to_response(self.processing_template_name)
 
