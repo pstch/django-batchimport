@@ -54,7 +54,7 @@ class ImportOptionsView(FormView):
             self.import_file_name = request.session['batchimport_file_name']
             self.import_model = request.session['batchimport_model']
         except KeyError:
-            return HttpResponseRedirect(reverse(self.upload_url))
+pp            return HttpResponseRedirect(reverse(self.upload_url))
         return super(ImportOptionsView, self).dispatch(request, *args, **kwargs)
         
     def get_context_data(self, **kwargs):
@@ -98,18 +98,13 @@ class ImportRunView(TemplateView):
 
             self.init_status_dict()
         except KeyError, e:
-            print e
             return HttpResponseRedirect(reverse(self.upload_url))
 
         return super(ImportRunView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(ImportRunView, self).get_context_data(**kwargs)
-        print "STATUS: %s" % self.status_dict
-        print "START IMPORT"
         self.run_import()
-        print "END IMPORT"
-        print "STATUS: %s" % self.status_dict
         for key, value in self.status_dict.items():
             context[key] = value
 
@@ -163,7 +158,7 @@ class ImportRunView(TemplateView):
                                                        self.import_options,
                                                        self.status_dict)
 
-        except NotImplementedError, e:
+        except Exception, e:
             # Report error
             self.status_dict['error_messages'].append({ 'name' : 'Import Error',
                                                         'critical' : 'Yes',
