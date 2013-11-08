@@ -70,9 +70,12 @@ class ImportOptionsView(FormView):
 
 
     def form_valid(self, form):
+        print "Initializing batchimport_options"
         self.request.session['batchimport_options'] = {}
         for option in form.get_process_options_dict().keys():
+            print "Option %s" % option
             self.request.session['batchimport_options'][option] = form.cleaned_data[option]
+        print "Batchimport_options: %s" % self.request.session['batchimport_options']
 
         model_field_value_dict = {}
         for field in form.model_field_names:
@@ -85,7 +88,7 @@ class ImportOptionsView(FormView):
         self.request.session['batchimport_info'] = model_import_info
         
         return render_to_response(self.processing_template_name)
-
+p
 class ImportRunView(TemplateView):
     template_name = "batchimport/run.html"
     upload_url = "batchimport_upload"
