@@ -53,7 +53,8 @@ class ImportOptionsView(FormView):
         try:
             self.import_file_name = request.session['batchimport_file_name']
             self.import_model = request.session['batchimport_model']
-        except KeyError:
+        except KeyError, e:
+            print "django-batchimport: error: %s" % e
             return HttpResponseRedirect(reverse(self.upload_url))
         return super(ImportOptionsView, self).dispatch(request, *args, **kwargs)
         
@@ -98,6 +99,7 @@ class ImportRunView(TemplateView):
 
             self.init_status_dict()
         except KeyError, e:
+            print "django-batchimport: error: %s" % e
             return HttpResponseRedirect(reverse(self.upload_url))
 
         return super(ImportRunView, self).dispatch(request, *args, **kwargs)
