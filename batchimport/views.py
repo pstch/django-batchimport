@@ -160,6 +160,7 @@ class ImportRunView(TemplateView):
 
         except Exception, e:
             # Report error
+            print e
             self.status_dict['error_messages'].append({ 'name' : 'Import Error',
                                                         'critical' : 'Yes',
                                                         'description' : '%s' % str(sys.exc_info()[1]),
