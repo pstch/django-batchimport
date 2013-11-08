@@ -72,8 +72,8 @@ def _do_batch_import(request, model_import_info, book, sheet, process_option_dic
                         setattr(dupe_in_db, key, import_object_dict[key])
                     dupe_in_db.save()
 
-                    status_msg = { description : 'Updated row #%d'  % row,
-                                   object : dupe_in_db }
+                    status_msg = { 'description' : 'Updated row #%d'  % row,
+                                   'object' : dupe_in_db }
 
                     status_dict['updated_count'] += 1
                     if process_option_dict['show_successful_updates']:
@@ -85,8 +85,8 @@ def _do_batch_import(request, model_import_info, book, sheet, process_option_dic
                 new_object = model_import_info.model_for_import(**import_object_dict)
                 new_object.save()
 
-                status_msg = { description : 'Imported row #%d'  % row,
-                               object : new_object }
+                status_msg = { 'description' : 'Imported row #%d'  % row,
+                               'object' : new_object }
                 status_dict['imported_count'] += 1
                 if process_option_dict['show_successful_imports']:
                     status_dict['combined_messages'].append(status_msg)
