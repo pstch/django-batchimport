@@ -63,32 +63,33 @@ def _do_batch_import(request, model_import_info, book, sheet, process_option_dic
                     cell_value = cell.value
                     row_value_list.append(cell_value)
 
-                    import_object_dict, import_object_id_dict = model_import_info.get_import_object_dicts(request, row_value_list)
+            import_object_dict, import_object_id_dict = model_import_info.get_import_object_dicts(request, row_value_list)
 
-                    try:
-                        # See if the current row represents a dupe.
-                        dupe_in_db = model_import_info.model_for_import.objects.get(**import_object_id_dict)
-                        if process_option_dict['update_dupes']: 
-                            for key in import_object_dict.keys():
-                                setattr(dupe_in_db, key, import_object_dict[key])
-                            dupe_in_db.save()
+            try:
+                # See if the current row represents a dupe.
+                dupe_in_db = model_import_info.model_for_import.objects.get(**import_object_id_dict)
+                if process_option_dict['update_dupes']: 
+                    for key in import_object_dict.keys():
+                        setattr(dupe_in_db, key, import_object_dict[key])
+                    dupe_in_db.save()
 
-                            status_msg = 'Updated : #%d' % str(row)
-                            status_dict['updated_count'] += 1
-                            if process_option_dict['show_successful_updates']:
-                                status_dict['combined_messages'].append(status_msg)
-                            status_dict['update_messages'].append(status_msg)
+                    status_msg = 'Updated : #%d' % str(row)
+                    status_dict['updated_count'] += 1
+                    if process_option_dict['show_successful_updates']:
+                        status_dict['combined_messages'].append(status_msg)
+                    status_dict['update_messages'].append(status_msg)
 
-                    except ObjectDoesNotExist:
-                        # The object doesn't exist. Go ahead and add it.
-                        new_object = model_import_info.model_for_import(**import_object_dict)
-                        new_object.save()
+            except ObjectDoesNotExist:
+                # The object doesn't exist. Go ahead and add it.
+                new_object = model_import_info.model_for_import(**import_object_dict)
+                new_object.save()
 
-                        status_msg = 'Imported : #%d'  %row 
-                        status_dict['imported_count'] += 1
-                        if process_option_dict['show_successful_imports']:
-                            status_dict['combined_messages'].append(status_msg)
-                        status_dict['import_messages'].append(status_msg)
+                status_msg = 'Imported : #%d'  %row 
+                status_dict['imported_count'] += 1
+                if process_option_dict['show_successful_imports']:
+                    status_dict['combined_messages'].append(status_msg)
+                status_dict['import_messages'].append(status_msg)
+
         except NotImplementedError, e:
             status_dict['error_messages'].append({'name' : 'Row processing error',
                                                  'critical' : 'No' if not process_option_dict['stop_on_first_error'] else "Yes",
