@@ -162,7 +162,6 @@ class ImportRunView(TemplateView):
             # Report error
             self.status_dict['error_messages'].append({ 'name' : 'Import Error',
                                                         'critical' : 'Yes',
-                                                        'description' : 'COUCOU',
-#                                                        'description' : str(sys.exc_info()[1]),
+                                                        'description' : '%s' % str(sys.exc_info()[1]),
                                                         'info' : ['File: %s' % filepath,]})
             return
