@@ -41,7 +41,7 @@ class ImportUploadView(FormView):
         self.request.session['batchimport_file_name'] = str(self.request.FILES['import_file'].name)
         self.request.session['batchimport_model'] = str(form.cleaned_data['model_for_import'])
 
-        return HttpResponseRedirect(reverse(self.next))
+        return HttpResponseRedirect(reverse(self.options_url))
 
 class ImportOptionsView(FormView):
     template_name = "batchimport/options.html"
