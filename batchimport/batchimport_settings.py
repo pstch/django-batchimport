@@ -17,8 +17,6 @@ def get_setting(setting_name, default):
 	
 	"""
 	setting = default
-	print setting_name
-	print default
 	try:
 		setting=getattr(settings, setting_name)
 	except (AttributeError, NameError):
