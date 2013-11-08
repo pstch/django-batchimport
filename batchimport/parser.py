@@ -61,7 +61,7 @@ def _do_batch_import(request, model_import_info, book, sheet, process_option_dic
                 else:
                     cell_value = cell.value
                     row_value_list.append(cell_value)
-                if cell_value = "TEST123":
+                if cell_value == "TEST123":
                     raise Exception("TEST 123 EXCEPTION")
 
             import_object_dict, import_object_id_dict = model_import_info.get_import_object_dicts(request, row_value_list)
