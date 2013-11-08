@@ -98,7 +98,7 @@ class ImportRunView(TemplateView):
             self.import_info = request.session['batchimport_info']
 
             self.init_status_dict()
-        except KeyError, e:
+        except MemoryError, e:
             print "django-batchimport: error: %s" % e
             return HttpResponseRedirect(reverse(self.upload_url))
 
