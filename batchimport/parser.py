@@ -94,7 +94,7 @@ def _do_batch_import(request, model_import_info, book, sheet, process_option_dic
         except Exception, e:
             status_dict['error_messages'].append({'name' : 'Row processing error',
                                                   'critical' : 'No' if not process_option_dict['stop_on_first_error'] else "Yes",
-                                                  'description' : '%s' % e,
+                                                  'description' : 'TEST %s' % str(e),
                                                   'info' : ["Row: %s",
                                                             "Exception : %s" % (row,str(type(e)))]})
             if process_option_dict['stop_on_first_error']:
