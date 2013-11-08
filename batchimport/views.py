@@ -157,7 +157,6 @@ class ImportRunView(TemplateView):
                                                        sheet,
                                                        self.import_options,
                                                        self.status_dict)
-
         except Exception, e:
             # Report error
             print e
@@ -166,4 +165,12 @@ class ImportRunView(TemplateView):
                                                         'description' : '%s' % str(sys.exc_info()[1]),
                                                         'info' : ['File : %s' % filepath,
                                                                   'Exception : %s' % str(type(e)) ]})
-            return
+
+        del request.session['batchimport_file_name']
+        del request.session['batchimport_model']
+        del request.session['batchimport_options']
+        del request.session['batchimport_info']
+
+        os.remove(filepath)
+        
+        return
