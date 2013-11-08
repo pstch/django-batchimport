@@ -161,11 +161,10 @@ class ImportRunView(TemplateView):
                                                        self.import_options,
                                                        self.status_dict)
 
-        except Exception, e:
+        except NotImplementedError, e:
             # Report error
             self.status_dict['error_messages'].append({ 'name' : 'Import Error',
                                                         'critical' : 'Yes',
                                                         'message' : '%s' % e,
                                                         'info' : 'File: %s' % filepath})
-            raise e
             return
