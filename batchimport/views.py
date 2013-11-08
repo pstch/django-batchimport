@@ -122,7 +122,7 @@ class ImportRunView(TemplateView):
         status_dict['end_row'] = self.import_options['end_row']
 
         status_dict['row_count'] = 0
-        status_dict['processed_row_count'] = 0
+        status_dict['processed_count'] = 0
         
         status_dict['imported_count'] = 0
         status_dict['updated_count'] = 0
