@@ -175,6 +175,7 @@ class ImportRunView(TemplateView):
         del self.request.session['batchimport_model']
         del self.request.session['batchimport_options']
         del self.request.session['batchimport_info']
+        self.request.session.modified = True
 
         try:
             os.remove(filepath)

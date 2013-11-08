@@ -11,7 +11,7 @@ from setuptools import setup
 
 setup(
     name='django-batchimport',
-    version='0.1.3-pstch',
+    version='0.1.3-cbv',
     description='Django XLS batch processing',
     long_description="pistache's fork of Łukasz Mierzwa's project. Django template tags used to generate breadcrumbs html using twitter bootstrap css classes",
     author='Hugo Geoffroy',
