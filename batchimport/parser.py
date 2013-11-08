@@ -51,7 +51,6 @@ def _do_batch_import(request, model_import_info, book, sheet, process_option_dic
     import_object_id_dict = {}
 
     for row in range(process_option_dict['start_row']-1,process_option_dict['end_row']):
-        print "New row : %s" % row
         status_dict['processed_count'] += 1
         try:
             row_value_list = []
@@ -62,6 +61,8 @@ def _do_batch_import(request, model_import_info, book, sheet, process_option_dic
                 else:
                     cell_value = cell.value
                     row_value_list.append(cell_value)
+                if cell_value = "TEST123":
+                    raise Exception("TEST 123 EXCEPTION")
 
             import_object_dict, import_object_id_dict = model_import_info.get_import_object_dicts(request, row_value_list)
 
@@ -141,7 +142,7 @@ def _do_relation_import(request, model_import_info, book, sheet, process_option_
     relationship_source_id_dict = {}
     relationship_target_id_dict = {}
     for row in range(process_option_dict['start_row']-1,process_option_dict['end_row']):
-        status_dict['imported_count'] += 1
+        status_dict['processed_count'] += 1
         try:
             row_value_list = []
             for cell in sheet.row(row):
