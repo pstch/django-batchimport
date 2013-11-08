@@ -88,7 +88,7 @@ class ImportOptionsView(FormView):
         self.request.session['batchimport_info'] = model_import_info
         
         return render_to_response(self.processing_template_name)
-p
+
 class ImportRunView(TemplateView):
     template_name = "batchimport/run.html"
     upload_url = "batchimport_upload"
