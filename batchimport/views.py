@@ -166,10 +166,10 @@ class ImportRunView(TemplateView):
                                                         'info' : ['File : %s' % filepath,
                                                                   'Exception : %s' % str(type(e)) ]})
 
-        del request.session['batchimport_file_name']
-        del request.session['batchimport_model']
-        del request.session['batchimport_options']
-        del request.session['batchimport_info']
+        del self.request.session['batchimport_file_name']
+        del self.request.session['batchimport_model']
+        del self.request.session['batchimport_options']
+        del self.request.session['batchimport_info']
 
         os.remove(filepath)
         
