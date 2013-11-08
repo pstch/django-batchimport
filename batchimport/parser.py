@@ -51,6 +51,7 @@ def _do_batch_import(request, model_import_info, book, sheet, process_option_dic
     import_object_id_dict = {}
 
     for row in range(process_option_dict['start_row']-1,process_option_dict['end_row']):
+        print "New row : %s" % row
         status_dict['processed_count'] += 1
         try:
             row_value_list = []
