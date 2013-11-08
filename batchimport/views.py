@@ -171,6 +171,9 @@ class ImportRunView(TemplateView):
         del self.request.session['batchimport_options']
         del self.request.session['batchimport_info']
 
-        os.remove(filepath)
+        try:
+            os.remove(filepath)
+        except:
+            pass
         
         return
