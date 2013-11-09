@@ -26,7 +26,7 @@ Some screenshots of SynCoor used in a document management application are availa
 
  - `ImportRunView` : TemplateView that runs the import and displays the rsults
    - Options :
-     - `template_name` : template used to render the view (default: `batchimport/options.html`)
+     - `template_name` : template used to render the view (default: `batchimport/run.html`)
 	 - `upload_url` : name of the URL pattern pointing to the ImportUploadFile, in case we need to go back (default: `batchimport_upload`)
    - Context :
      - `start_row` : first row to be imported
@@ -40,8 +40,19 @@ Some screenshots of SynCoor used in a document management application are availa
 	 - `update_messages` : updates results
 	 - `error_messages` : errors
 
-# Session data
+# Results context (*_messages)
 
+The context variables listed above ending in `_messages` have a specific format. `combined_messages`, `import_messages` and `update_messages` are lists of dicts with the following keys :
+ - `description` : Description of the event ("Updated row 45.")
+ - `object_id` : Database ID of the object created/updated
+
+`error_messages` is made of a list of dicts with the following keys :
+ - `name` : Name of the error
+ - `critical` : Boolean indicating if the error triggers a global failure of the import
+ - `description` : Description of the error
+ - `info` : Additional info (list of strings, each string represents a line)
+
+# Session data
 
 django-batchimport uses the following session variables to store data between its views n:
  - `batchimport_file_name` (set by `ImportUploadView`)
