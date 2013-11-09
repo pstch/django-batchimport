@@ -3,6 +3,8 @@
 Allows for batch import of django model data via uploaded Microsoft Excel files, saved as XLS files (Excel Binary file format). 
 Of course, you can also use OpenOffice or CSV files, but you will have to convert them to the XLS format beforehand.
 
+Some screenshots of SynCoor used in a document management application are available [here](http://imgur.com/a/4MWTf#0).
+
 **This experimental forks uses "class-based views" to provide more flexibility**
 
 # Settings
