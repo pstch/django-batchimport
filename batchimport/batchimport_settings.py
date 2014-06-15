@@ -8,7 +8,7 @@ of cheating and using them as variables to initialize them here.
 
 """
 
-import settings
+from django.conf import settings
 
 def get_setting(setting_name, default):
 	"""
