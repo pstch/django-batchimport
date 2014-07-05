@@ -17,7 +17,7 @@ setup(
     author='Hugo Geoffroy',
     author_email='batchimport@pstch.net',
     install_requires = ['xlrd==0.9.3']
-    packages = ['batchimport'],
+    packages = ['batchimport']
     package_data = {
         'batchimport': ['templates/batchimport/*.html'],
     },
